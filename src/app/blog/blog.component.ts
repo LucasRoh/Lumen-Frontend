@@ -11,6 +11,7 @@ import { Blog } from "../interfaces/blog-interface";
   template: `
     <section class="listing">
       <h2 class="listing-heading">{{ blog.title }}</h2>
+      <a [routerLink]="['/blogs', blog.id]">More</a>
     </section>
   `,
   styleUrls: ['./blog.component.css']

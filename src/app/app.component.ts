@@ -10,7 +10,9 @@ import {BlogComponent} from "./blog/blog.component";
   template: `
     <main>
         <app-header/>
-        <app-home/>
+        <section>
+          <router-outlet></router-outlet>
+        </section>
     </main>
   `,
   styleUrls: ['./app.component.css'],
