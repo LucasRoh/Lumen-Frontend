@@ -16,6 +16,11 @@ export class BlogService {
     return await data.json() ?? [];
   }
 
+  async getPostCount(id: Number) : Promise<Number> {
+    const data = await fetch(`${this.url}/count/${id}`);
+    return await data.json() ?? {};
+  }
+
   async getBlogById(id: Number) : Promise<Blog | undefined> {
     const data = await fetch(`${this.url}/${id}`);
     return await data.json() ?? {};
