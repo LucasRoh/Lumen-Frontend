@@ -10,23 +10,25 @@ import {Blog} from "../interfaces/blog-interface";
     standalone: true,
     imports: [CommonModule, BlogComponent],
     template: `
-        <section id="searchbar">
-            <form>
-                <input type="text" placeholder="Filter" #filter>
-                <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
-            </form>
-        </section>
-        <section class="results">
-
-            <app-blog *ngFor="let blog of filteredBlogList" [blog]="blog">
-
-            </app-blog>
+        <div id="searchContainer">
+            <section id="searchbar">
+                <form>
+                    <img id="lupeImage" [src]="lupeUrl" alt="Search Button" (click)="filterResults(filter.value)">
+                    <input type="text" placeholder="Search" #filter>
+                </form>
+            </section>
+        </div>
+        <section id="results">
+            <app-blog *ngFor="let blog of filteredBlogList" [blog]="blog"/>
         </section>
     `,
     styleUrls: ['./home.component.css']
 })
 
 export class HomeComponent {
+
+    lupeUrl = "/assets/images/Lupe.png";
+
     blogList: Blog[] = [];
     blogService: BlogService = inject(BlogService);
     filteredBlogList: Blog[] = [];
