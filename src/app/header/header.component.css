@@ -1,0 +1,32 @@
+.header-images {
+    height: 50px;
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#logo {
+    height: 100px;
+    width: 100px;
+}
+
+
+header {
+    background-color: burlywood;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    display: flex;
+    justify-content: space-around;
+    gap: 7rem;
+    margin: 5rem;
+    align-items: center;
+}
+
