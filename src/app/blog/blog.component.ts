@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from "@angular/router";
+import { Blog } from "../interfaces/blog-interface";
+
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   template: `
-    <p>
-      blog works!
-    </p>
+    <section class="listing">
+      <h2 class="listing-heading">{{ blog.title }}</h2>
+    </section>
   `,
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent {
-
+  @Input() blog!:Blog;
 }
