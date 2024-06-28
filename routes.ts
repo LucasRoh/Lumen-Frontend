@@ -1,7 +1,8 @@
 import {Routes} from "@angular/router";
 import {HomeComponent} from "./src/app/home/home.component";
-import {BlogDetailsComponent} from "./src/app/blog-details/blog-details.component";
+// import {BlogDetailsComponent} from "./src/app/blog-details-components/blog-details/blog-details.component";
 import {PostFormComponent} from "./src/app/post-form/post-form.component";
+import {DetailComponent} from "./src/app/pages/detail/detail.component";
 
 const routeConfig: Routes = [
     {
@@ -11,14 +12,13 @@ const routeConfig: Routes = [
     },
     {
         path: 'blogs/:id',
-        component: BlogDetailsComponent,
+        component: DetailComponent,
         title: 'Blogdetails Page'
     },
     {
         path: 'blogs/create',
         component: PostFormComponent,
-        title: 'Create Blog Page'
-
+        title: 'Create Blog Page',
     }
 ];
 

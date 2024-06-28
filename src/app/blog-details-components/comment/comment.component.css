@@ -1,0 +1,29 @@
+.wrap-comment{
+    max-width: 650px;
+    margin: auto;
+}
+
+
+.comment{
+    border: 3px solid #cdcbcb;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+
+.comment-user-profil{
+    display: flex;
+}
+.comment-user-profil img{
+    height: 20px;
+    width: auto;
+}
+
+.comment-user-profil p{
+    font-size: 1em;
+    margin: 0;
+    padding: 0 0 0 5px;
+
+}
