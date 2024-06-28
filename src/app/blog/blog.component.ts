@@ -51,6 +51,7 @@ export class BlogComponent implements OnInit {
                 this.postCount = postCount;
             });
         }
+        console.log("postcount:" + this.postCount)
         this.timestamp = this.blog.timestamp.replace(/^(\d{4})-(\d{2})-(\d{2})T.*$/, '$3-$2-$1');
     }
 }
