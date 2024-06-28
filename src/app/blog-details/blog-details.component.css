@@ -1,0 +1,131 @@
+
+article{
+  width: 100%;
+}
+
+section{
+    border: 3px solid #cdcbcb;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+section h1{
+    font-family: "Fira Code Retina", sans-serif;
+    font-size: 30px;
+}
+
+section, .wrap-answer  {
+    margin: auto;
+    margin-top: 20px;
+    width: 600px;
+}
+
+.user-profil{
+    display: flex;
+
+}
+
+.user-profil img{
+    height: 30px;
+    width: auto;
+}
+
+.user-profil p{
+   font-size: 1.2em;
+    margin: 0;
+    padding: 5px 0 0 5px;
+
+}
+
+.antwort{
+    margin: auto;
+    margin-top: 60px;
+    width: 700px;
+}
+
+
+.antwort h2{
+    border-bottom: black solid 1px;
+}
+
+.post-listing, .comment-listing{
+    border: 3px solid #cdcbcb;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.comment-listing{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.wrap-button{
+    width: 640px;
+    margin: auto;
+    margin-top: 40px;
+}
+.post-button{
+    font-size: 20px;
+    background-color: #ffffff;
+    box-shadow: none;
+    border: 2px solid #b5b5b5;
+    padding: 10px 30px 10px 20px;
+    border-radius: 10px;
+}
+
+.post-button:hover{
+    background-color: #e8e8e8;
+}
+
+.comment-button{
+    border: none;
+    background-color: white;
+    width: 80px;
+}
+
+.comment-button:hover{
+    border-bottom: solid 1px black;
+}
+
+.user-profil-answer{
+    display: flex;
+}
+
+.user-profil-answer img{
+    height: 20px;
+    width: auto;
+}
+
+.user-profil-answer p, .post-blc p{
+    font-size: 1em;
+    margin: 0;
+    padding: 0 0 0 5px;
+
+}
+
+.post-blc{
+    min-height: 30px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr 30px 0.5fr;
+    grid-template-areas:
+    "button . img count";
+}
+.post-blc button{
+    grid-area: button;
+}
+.post-blc p{
+    grid-area: count;
+    text-align: left;
+}
+.post-likes{
+    height: 25px;
+    width: auto;
+    grid-area: img;
+}
+
+.post-likes:hover{
+    height: 28px;
+    width: auto;
+}
+
