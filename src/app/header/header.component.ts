@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule, NgOptimizedImage, RouterLink],
   template: `
     <header>
       <section>
         <img class="header-images" [src]="logoUrl" alt="Logo" id="logo">
-        <img class="header-images" [src]="createUrl" alt="Logo" >
+        <img class="header-images" [src]="createUrl" alt="Logo" routerLink="blogs/create">
         <img class="header-images" [src]="tagsUrl" alt="Logo" >
       </section>
       <section>

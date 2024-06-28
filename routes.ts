@@ -10,12 +10,12 @@ const routeConfig: Routes = [
         title: 'Home Page'
     },
     {
-        path: 'blog/:id',
+        path: 'blogs',
         component: BlogDetailsComponent,
         title: 'Blogdetails Page'
     },
     {
-        path: 'blog/create',
+        path: 'blogs/create',
         component: PostFormComponent,
         title: 'Create Blog Page'
 
