@@ -11,7 +11,7 @@ import {BlogService} from "../services/blog.service";
     standalone: true,
     imports: [CommonModule, RouterModule],
     template: `
-        <section class="listing">
+        <section class="listing" [routerLink]="['/blogs',blog.id]">
             <div class="account-container">
                 <img id="accountImage" [src]="profilUrl" alt="User Logo">
                 <p class="listing-account">{{ blog.account?.name }}</p>

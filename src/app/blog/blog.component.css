@@ -32,6 +32,10 @@
     margin: 0;
 }
 
+.listing:hover {
+    cursor: pointer;
+}
+
 #answersImage {
     height: 22px;
     width: 22px;
