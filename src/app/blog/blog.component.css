@@ -21,6 +21,7 @@
 
 .listing-account {
     font-weight: bold;
+    font-size: 1.3rem;
 }
 
 .info-container {
@@ -28,19 +29,24 @@
     justify-content: end;
     gap: 1.5rem;
     align-items: center;
+    margin: 0;
 }
 
 #answersImage {
-    height: 35px;
-    width: 35px;
+    height: 22px;
+    width: 22px;
 }
 
 #postCount {
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin-right: 1rem;
+    font-size: 1.35rem;
+    margin: 0 1rem 0 0;
 }
 
 .listing-timestamp {
     font-style: italic;
 }
+
+.listing-heading {
+    margin: 1rem;
+}
+
