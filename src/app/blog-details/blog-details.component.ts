@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ActivatedRoute} from "@angular/router";
 import {BlogService} from "../services/blog.service";
@@ -7,6 +7,7 @@ import {Post} from "../interfaces/post-interface";
 import {CommentService} from "../services/comment.service";
 import {Comment} from "../interfaces/comment-interface";
 import {PostService} from "../services/post.service";
+import {error} from "protractor";
 
 
 
@@ -22,7 +23,7 @@ import {PostService} from "../services/post.service";
         <p>This is the Questioner: {{ blog?.account?.name }}</p>
       </section>
 
-      <!-- <section *ngIf="postList?.length">
+       <section *ngIf="postList?.length">
         <ul *ngFor="let post of postList">
             <li>{{post.answer}}</li>
         </ul>
@@ -33,13 +34,13 @@ import {PostService} from "../services/post.service";
           <p>Here is a comment. Currently empty</p>
         </section>
       </section>
-      -->
+      
     </article>
 
   `,
   styleUrls: ['./blog-details.component.css']
 })
-export class BlogDetailsComponent {
+export class BlogDetailsComponent implements OnInit{
   route: ActivatedRoute = inject(ActivatedRoute);
   blogService = inject(BlogService);
   postService = inject(PostService);
@@ -53,9 +54,28 @@ export class BlogDetailsComponent {
   constructor() {
     const blogId = Number(this.route.snapshot.params['id']);
     this.blogService.getBlogById(blogId).then(blog =>{this.blog = blog});
-    this.blogService.getPostsByBlogId(blogId).then(posts =>{this.postList = posts})
+
 
   }
+
+  ngOnInit(){
+
+  }
+
+  loadPosts(){
+    this.blogService.getPostsByBlogId(this.route.snapshot.params['id']).then(
+        posts =>{this.postList = posts},
+        (error) =>{console.log(error)}
+    );
+  }
+
+  loadCommentsForPost(){
+    this.postList.forEach(post =>{
+      this.commentList.
+    })
+
+  }
+
 
 
 }
