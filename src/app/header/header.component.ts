@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {RouterLink} from "@angular/router";
-
 @Component({
     selector: 'app-header',
     standalone: true,
@@ -14,13 +13,16 @@ import {RouterLink} from "@angular/router";
                 <img class="header-images" [src]="tagsUrl" alt="Logo">
             </section>
             <section>
-                <img class="header-images" [src]="profilUrl" alt="Logo">
+                <img class="header-images" [src]="shopUrl"  alt="Logo" id="shopUrl" routerLink="app/shop">
+                <img class="header-images" *ngIf="!loggedIn()" [src]="profilUrl" alt="Logo" routerLink="app/login">
+                <img class="header-images" *ngIf="loggedIn()" [src]="profilUrl" alt="Logo" routerLink="app/account">
                 <img class="header-images" [src]="loginUrl" alt="Logo">
             </section>
         </header>
     `,
     styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent {
 
     logoUrl = "/assets/images/Logo.png";
@@ -28,9 +30,18 @@ export class HeaderComponent {
     tagsUrl = "/assets/images/Tag.png";
     profilUrl = "/assets/images/Profil.png";
     loginUrl = "/assets/images/Login.png";
+    shopUrl="/assets/images/shop.png";
     commentUrl = "/assets/images/Comment.png";
 
+    protected loggedIn(): boolean {
+        if (localStorage.getItem("loggedIn") === "true") {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     constructor() {
     }
+
 }
