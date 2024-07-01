@@ -9,7 +9,8 @@ export class BlogService {
 
   url = 'http://localhost:8080/blogs'
 
-  constructor() { }
+  constructor(
+  ) {}
 
   async getAllBlogs() : Promise<Blog[]> {
     const data = await fetch(this.url);
@@ -24,5 +25,14 @@ export class BlogService {
   async getBlogById(id: Number) : Promise<Blog | undefined> {
     const data = await fetch(`${this.url}/${id}`);
     return await data.json() ?? {};
+  }
+  async createBlog(blog: Blog): Promise<void> {
+    await fetch(this.url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(blog)
+    })
   }
 }
