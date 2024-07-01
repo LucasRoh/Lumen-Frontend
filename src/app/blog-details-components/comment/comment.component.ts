@@ -12,10 +12,10 @@ import {Comment} from "../../interfaces/comment-interface";
     <div class="comment">
       <div class="comment-user-profil">
         <img src="../../../assets/images/Profil.png" alt="abcd">
-        <p>User: {{ comment.account?.name }} </p>
+        <p>{{ comment.account?.name }} </p>
       </div>
 
-      <p class="comment-comment">This is a comment: {{ comment.comment }}</p>
+      <p class="comment-comment">{{ comment.comment }}</p>
     </div>
     </div>
 
