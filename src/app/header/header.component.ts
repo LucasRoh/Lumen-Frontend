@@ -26,7 +26,7 @@ export class HeaderComponent {
     logoUrl = "/assets/images/Logo.png";
     createUrl = "/assets/images/Create.png";
     tagsUrl = "/assets/images/Tag.png";
-    profilUrl = "/assets/images/Profil.png";
+    profilUrl = "/assets/images/DefaultAccountImage.png";
     loginUrl = "/assets/images/Login.png";
     commentUrl = "/assets/images/Comment.png";
 
