@@ -21,6 +21,7 @@ import {CommentComponent} from "../comment/comment.component";
                 <div class="user-profil">
                     <img src="../../../assets/images/Profil.png" alt="abcd">
                     <p>User: {{ blog?.account?.name }}</p>
+                    <p>Date: {{ timestamp }}</p>
                 </div>
                 <h1>Here comes the title: {{ blog?.title }}</h1>
                 <p>Here comes the Question: {{ blog?.question }}</p>
@@ -44,17 +45,17 @@ import {CommentComponent} from "../comment/comment.component";
     styleUrls: ['./blog-details.component.css']
 })
 export class BlogDetailsComponent implements OnInit {
+
     blog: Blog | undefined;
     postList: Post[] | undefined;
 
     blogId: number = Number(this.route.snapshot.params['id']);
+    timestamp: string | undefined;
 
     constructor(
         private route: ActivatedRoute,
         private blogService: BlogService,
-        private postService: PostService,
-    ) {
-    }
+        private postService: PostService,) {}
 
     ngOnInit() {
         this.loadBlogs();
@@ -63,9 +64,9 @@ export class BlogDetailsComponent implements OnInit {
     }
 
     loadBlogs() {
-
         this.blogService.getBlogById(this.blogId).then(blog => {
-            this.blog = blog
+            this.blog = blog;
+            this.timestamp = this.blog?.timestamp.replace(/^(\d{4})-(\d{2})-(\d{2})T.*$/, '$3-$2-$1');
         })
     }
 

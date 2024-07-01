@@ -19,7 +19,7 @@ import {Comment} from "../../interfaces/comment-interface";
       <div class="post-blc">
         <button type="button" class="comment-button">+ Answer</button>
         <img class="post-likes" src="../../../assets/images/Like.png" alt="abcd">
-        <p> 10</p>
+        <p> {{post.likes}}</p>
       </div>
     </div>
     <app-comment *ngFor="let comment of commentList" [comment]="comment"></app-comment>

@@ -37,8 +37,4 @@ export class PostService {
     return throwError(() => new Error('Failed to post data, please try again later.'));
   }
 
-
-
-
-
 }
