@@ -13,7 +13,7 @@ import {BlogService} from "../services/blog.service";
     template: `
         <section class="listing" [routerLink]="['/blogs',blog.id]">
             <div class="account-container">
-                <img id="accountImage" [src]="profilUrl" alt="User Logo">
+                <img id="accountImage" [src]="blog.account?.imagePath" alt="User Logo">
                 <p class="listing-account">{{ blog.account?.name }}</p>
                 <p class="listing-timestamp">{{ timestamp }}</p>
             </div>
@@ -29,7 +29,6 @@ import {BlogService} from "../services/blog.service";
 
 export class BlogComponent implements OnInit {
 
-    profilUrl = "/assets/images/Profil.png";
     commentUrl = "/assets/images/Comment.png";
 
     postCount: Number = 0;
@@ -45,13 +44,12 @@ export class BlogComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
         if (this.blog && this.blog.id) {
             this.blogService.getPostCount(this.blog.id).then((postCount: Number) => {
                 this.postCount = postCount;
             });
         }
-        console.log("postcount:" + this.postCount)
+
         this.timestamp = this.blog.timestamp.replace(/^(\d{4})-(\d{2})-(\d{2})T.*$/, '$3-$2-$1');
     }
 }

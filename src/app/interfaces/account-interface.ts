@@ -5,4 +5,5 @@ export interface Account {
     name: string,
     password: string,
     blogs?: Blog[]
+    imagePath: string,
 }
