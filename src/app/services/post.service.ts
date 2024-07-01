@@ -36,5 +36,9 @@ export class PostService {
     console.error('Error posting data:', error);
     return throwError(() => new Error('Failed to post data, please try again later.'));
   }
-
+  async addLikeToPost(post : Post, boolean : boolean): Promise<void> {
+    await fetch(`${this.url}/${post.id}/likes?isLike=${boolean}`, {
+      method: 'PUT',
+    })
+    }
 }
