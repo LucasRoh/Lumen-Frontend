@@ -15,7 +15,7 @@ const routeConfig: Routes = [
         title: 'Blogdetails Page'
     },
     {
-        path: 'blogs/create',
+        path: 'blog/create',
         component: PostFormComponent,
         title: 'Create Blog Page'
 

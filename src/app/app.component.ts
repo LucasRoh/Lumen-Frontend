@@ -4,6 +4,7 @@ import {HeaderComponent} from "./header/header.component";
 import {RouterModule} from "@angular/router";
 import {BlogComponent} from "./blog/blog.component";
 
+
 @Component({
     standalone: true,
     selector: 'app-root',
@@ -16,7 +17,7 @@ import {BlogComponent} from "./blog/blog.component";
         </main>
     `,
     styleUrls: ['./app.component.css'],
-    imports: [HomeComponent, HeaderComponent, RouterModule, BlogComponent]
+    imports: [HomeComponent, HeaderComponent, RouterModule, BlogComponent ]
 })
 export class AppComponent {
     title = 'homes';
