@@ -31,6 +31,15 @@ export class BlogService {
     const data = await fetch(`${this.url}/${id}`);
     return await data.json() ?? {};
   }
+  async createBlog(blog: Blog): Promise<void> {
+    await fetch(this.url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(blog)
+    })
+  }
 
   async getPostsByBlogId(id: Number) : Promise<Post[] | undefined> {
     const postsdata = await fetch(`${this.url}/${id}/posts`);
