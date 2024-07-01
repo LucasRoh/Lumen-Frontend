@@ -1,6 +1,9 @@
 .create-post{
     width: 600px;
     margin: auto;
+    border: solid 3px #cdcbcb;
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .create-post label, .create-post button, .create-post textarea, .validate-meldung{
@@ -10,7 +13,7 @@
 }
 
 .create-post label{
-    margin-top: 40px;
+    margin-top: 20px;
     font-size: 1.2em;
 }
 
@@ -18,6 +21,8 @@
     width: 600px;
     height: 200px;
     padding: 12px 20px;
+    font-family: "Roboto Thin", serif;
+    font-size: 1.3em;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {Post} from "../../interfaces/post-interface";
 import {BlogService} from "../../services/blog.service";
 import {Account} from "../../interfaces/account-interface";
@@ -13,11 +13,12 @@ import {Account} from "../../interfaces/account-interface";
     <div class="create-post">
       <form #postForm="ngForm" (ngSubmit)="handleSubmitAnswer(postForm)">
         <label for="answer"> Answer: </label>
-        <textarea id="answer" name="answer"  [(ngModel)]="post.answer" required></textarea>
-        <div class="validate-meldung" *ngIf="postForm.form.controls['answer']?.invalid && postForm.form.controls['answer']?.touched">
+        <textarea id="answer" name="answer" [(ngModel)]="post.answer" required></textarea>
+        <div class="validate-meldung"
+             *ngIf="postForm.form.controls['answer']?.invalid && postForm.form.controls['answer']?.touched">
           Ya need to add an answer first.
         </div>
-        <button type="submit" [disabled]="postForm.invalid">Add Answer</button>
+        <button type="submit" [disabled]="postForm.invalid">Send Answer</button>
       </form>
     </div>
   `,
@@ -40,10 +41,6 @@ export class BlogFormComponent {
     timestamp: new Date().toISOString(),
     account: this.defaultAccount,
   };
-
-  postForm = new FormGroup({
-    answer: new FormControl(''),
-  })
 
   constructor(
       private blogService: BlogService,

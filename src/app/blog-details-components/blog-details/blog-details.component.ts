@@ -25,12 +25,12 @@ import {BlogFormComponent} from "../blog-form/blog-form.component";
                     <p>Date: {{ timestamp }}</p>
                 </div>
                 <h1>{{ blog?.title }}</h1>
-                <p class="">{{ blog?.question }}</p>
+                <p class="question-content">{{ blog?.question }}</p>
                 <p>This are the tags: still empty now</p>
             </section>
 
             <div class="wrap-button">
-                <button type="button" class="post-button" (click)="togglePostForm()" >{{showPostForm ? 'Cancel' : '+ Answer'  }}</button>
+                <button type="button" class="post-button" (click)="togglePostForm()" >{{showPostForm ? 'x Cancel' : '+ Answer'  }}</button>
             </div>
             
             <div>
