@@ -5,11 +5,13 @@ import {BlogService} from "../../services/blog.service";
 import {Blog} from "../../interfaces/blog-interface";
 import {Post} from "../../interfaces/post-interface";
 import {PostService} from "../../services/post.service";
+import {PostComponent} from "../post/post.component";
+import {CommentComponent} from "../comment/comment.component";
 
 @Component({
     selector: 'app-blog-details',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, PostComponent, CommentComponent],
     template: `
         <article>
             <div class="antwort">
@@ -33,31 +35,8 @@ import {PostService} from "../../services/post.service";
                 <h2>Antworten</h2>
             </div>
 
-            <div class="wrap-answer" *ngFor="let post of postList">
-                <div class="post-listing">
-                    <div class="user-profil-answer">
-                        <img src="../../../assets/images/Profil.png" alt="abcd">
-                        <p>User: {{ post.account?.name }}</p>
-                    </div>
-                    <p class="post-answer">{{ post.answer }}</p>
-                    <div class="post-blc">
-                        <button type="button" class="comment-button">+ Answer</button>
-                        <img class="post-likes" src="../../../assets/images/Like.png" alt="abcd">
-                        <p> 10</p>
-                    </div>
-                </div>
-
-                <div class="comments">
-                    <div class="comment-listing" *ngFor="let comment of post.comments">
-                        <div class="user-profil-answer">
-                            <img src="../../../assets/images/Profil.png" alt="abcd">
-                            <p>User: {{ comment?.account?.name }} </p>
-                        </div>
-
-                        <p class="comment-comment">{{ comment.comment }}</p>
-                    </div>
-                </div>
-
+            <div>
+                <app-post *ngFor="let post of postList" [post]="post"></app-post>
             </div>
 
         </article>
@@ -67,11 +46,6 @@ import {PostService} from "../../services/post.service";
 export class BlogDetailsComponent implements OnInit {
     blog: Blog | undefined;
     postList: Post[] | undefined;
-    testPost: Post = {
-        "id": 0,
-        "answer": '',
-        "comments": []
-    }
 
     blogId: number = Number(this.route.snapshot.params['id']);
 
@@ -85,8 +59,7 @@ export class BlogDetailsComponent implements OnInit {
     ngOnInit() {
         this.loadBlogs();
         this.loadPostsForBlog();
-        this.loadTestPost();
-        this.loadCommentsTest();
+
     }
 
     loadBlogs() {
@@ -116,15 +89,5 @@ export class BlogDetailsComponent implements OnInit {
                 console.log(error)
             })
         })
-    }
-
-    loadTestPost() {
-        const postId: number = 1;
-        this.postService.getPostById(postId).then(post => this.testPost = post);
-    }
-
-    loadCommentsTest() {
-        const postId: number = 1;
-        this.postService.getCommentsByPostId(postId).then(comment => this.testPost.comments = comment);
     }
 }

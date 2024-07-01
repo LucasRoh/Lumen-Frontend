@@ -13,9 +13,9 @@ import {Comment} from "../../interfaces/comment-interface";
     <div class="post">
       <div class="post-user-profil">
         <img src="../../../assets/images/Profil.png" alt="profil">
-        <p>User: {{ post?.account?.name }}</p>
+        <p>User: {{ post.account?.name }}</p>
       </div>
-      <p class="post-answer">Hier kommt die Antwort: {{ post?.answer }}</p>
+      <p class="post-answer">Hier kommt die Antwort: {{ post.answer }}</p>
       <div class="post-blc">
         <button type="button" class="comment-button">+ Answer</button>
         <img class="post-likes" src="../../../assets/images/Like.png" alt="abcd">
