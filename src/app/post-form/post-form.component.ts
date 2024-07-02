@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Blog} from "../interfaces/blog-interface";
 import {BlogService} from "../services/blog.service";
+import {async} from "rxjs";
 
 
 
@@ -18,16 +19,17 @@ import {BlogService} from "../services/blog.service";
 
         <textarea class="textArea" id="text" placeholder="Text" name="text" [(ngModel)]="blog.question"></textarea>
 
-        <input class="tags" type="number" id="tag" placeholder="Tags" name="tags" [(ngModel)]="blog.tag" >
+        <input class="tags" type="number" id="tag" placeholder="Tags" name="tags" [(ngModel)]="value">
         <img class="submit" [src]=submitURL alt="Submit" (click)="handleSubmit()">
       </form>
     </main>
+    
   `,
   styleUrls: ['./post-form.component.css']
 })
 export class PostFormComponent {
 
-
+  value: number = 0;
 
 
 
@@ -46,7 +48,7 @@ export class PostFormComponent {
     title: '',
     question: '',
     timestamp: new Date().toISOString(),
-    }
+  }
 
   constructor(private blogService: BlogService) {
   }
@@ -54,7 +56,8 @@ export class PostFormComponent {
 
   handleSubmit() {
     console.log(this.blog);
-    this.blogService.createBlog(this.blog).then(() => {
+    console.log(this.value);
+    this.blogService.createBlog(this.blog, this.value).then(() => {
       alert("Skibidi Alpha leader Tribe leader sigma")
     });
   }
