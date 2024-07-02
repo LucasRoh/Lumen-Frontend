@@ -3,7 +3,7 @@
     margin: auto;
     border: solid 3px #cdcbcb;
     border-radius: 10px;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
 }
 
 .create-post label, .create-post button, .create-post textarea, .validate-meldung{
@@ -13,16 +13,16 @@
 }
 
 .create-post label{
-    margin-top: 20px;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    font-family: sans-serif;
 }
 
 .create-post textarea{
     width: 600px;
-    height: 200px;
+    height: 150px;
     padding: 12px 20px;
     font-family: "Roboto Thin", serif;
-    font-size: 1.3em;
+    font-size: 1.2em;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;

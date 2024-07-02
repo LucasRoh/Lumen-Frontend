@@ -12,7 +12,7 @@ import {Account} from "../../interfaces/account-interface";
   template: `
     <div class="create-post">
       <form #postForm="ngForm" (ngSubmit)="handleSubmitAnswer(postForm)">
-        <label for="answer"> Answer: </label>
+        <label for="answer"> Add an Answer </label>
         <textarea id="answer" name="answer" [(ngModel)]="post.answer" required></textarea>
         <div class="validate-meldung"
              *ngIf="postForm.form.controls['answer']?.invalid && postForm.form.controls['answer']?.touched">

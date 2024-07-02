@@ -4,12 +4,12 @@
     margin-top: 20px;
     border: solid 3px #cdcbcb;
     border-radius: 10px;
-    padding: 0 20px 20px 20px;
+    padding: 0 20px 15px 20px;
 }
 
 .create-comment label, .create-comment button, .create-comment textarea, .validate-meldung{
     display: block;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 1em;
     font-family: "Roboto Thin", sans-serif;
 }
@@ -17,7 +17,7 @@
 
 
 .create-comment textarea{
-    width: 500px;
+    width: 550px;
     height: 80px;
     padding: 12px 20px;
     box-sizing: border-box;
