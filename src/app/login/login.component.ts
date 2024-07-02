@@ -31,18 +31,15 @@ export class LoginComponent {
 
         try {
             const accounts = await this.accountService.getAllAccounts();
-            console.log(accounts);
-            const status = accounts.some(account => account.name === username && account.password === password);
-            console.log(status);
-            if(status){
-                localStorage.setItem('loggedIn', 'true');
+            const account = accounts.find(acc => acc.name === username && acc.password === password);
+
+            if (account) {
+                localStorage.setItem('userId', String(account.id_account));
                 location.href="/"
-                console.log(localStorage.getItem('value'));
+                console.log(account.id_account);
             } else {
                 console.log("failed")
             }
-
-
         } catch (error) {
             console.error('Error fetching accounts', error);
         }
