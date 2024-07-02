@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 @Component({
     selector: 'app-header',
     standalone: true,
@@ -51,9 +51,13 @@ export class HeaderComponent {
     protected logout(){
         localStorage.removeItem("userId");
         localStorage.removeItem("profile");
+        localStorage.removeItem('account');
+        this.router.navigate(['/'])
     }
 
-    constructor() {
+    constructor(
+        private router : Router,
+    ) {
     }
 
 }

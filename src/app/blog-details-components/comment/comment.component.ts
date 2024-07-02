@@ -13,13 +13,12 @@ import {PostService} from "../../services/post.service";
     <div class="wrap-comment">
     <div class="comment">
       <div class="comment-user-profil">
-        <img src="../../../assets/images/Profil.png" alt="abcd">
+          <div class="wrap-img"><img src="{{comment.account?.imagePath}}" alt="abcd"></div>
         <p>{{ comment.account?.name }} </p>
       </div>
       <p class="comment-comment">{{ comment.comment }}</p>
-      <div class="buttons" *ngIf="canIEditAndDelete()">
-      
-        <button type="button" class="delete-button"> Delete </button>
+      <div class="buttons" *ngIf="isLoggedIn" >
+        <button type="button" class="delete-button" *ngIf="canIEditAndDelete()"> Delete </button>
       </div>
     </div>
     </div>
@@ -29,6 +28,8 @@ import {PostService} from "../../services/post.service";
 })
 export class CommentComponent{
  @Input() comment!: Comment;
+
+ isLoggedIn = this.accountService.isLoggedIn();
 
  constructor(
      private postService: PostService,

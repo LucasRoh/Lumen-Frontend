@@ -49,4 +49,10 @@ export class AccountService {
     localStorage.removeItem(this.accountKey);
   }
 
+  // to check if user is logged in
+    isLoggedIn():boolean{
+      const userId = localStorage.getItem('userId');
+      if (userId !== null) {return true}else {return false}
+    }
+
 }

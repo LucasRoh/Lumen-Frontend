@@ -31,6 +31,15 @@ section, .wrap-answer  {
 
 }
 
+/*to make profil pic round*/
+.wrap-img{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
 .user-profil img{
     width: 100%;
     height: auto;
@@ -73,10 +82,41 @@ section, .wrap-answer  {
     background-color: #e8e8e8;
 }
 
-.wrap-img{
-    position: relative;
-    width: 40px;
-    height: 40px;
-    overflow: hidden;
-    border-radius: 50%;
+.wrap-postlist{
+    margin-bottom: 50px;
+}
+
+#sortbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem;
+    padding: 0;
+    margin: auto;
+}
+
+#sortbar > * {
+    margin: 0;
+    padding: 0;
+}
+
+#sortbar > * > input {
+    height: 1rem;
+}
+
+#sortbar > * > * {
+    margin: 0;
+    padding: 0;
+}
+
+#sortbar > * > p {
+    font-size: 1.2rem;
+}
+
+
+#sortbar > div {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    align-items: center;
 }
