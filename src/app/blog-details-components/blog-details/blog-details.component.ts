@@ -30,14 +30,16 @@ import {BlogFormComponent} from "../blog-form/blog-form.component";
             </section>
 
             <div class="wrap-button">
-                <button type="button" class="post-button" (click)="togglePostForm()" >{{showPostForm ? 'x Cancel' : '+ Answer'  }}</button>
+                <button type="button" class="post-button"
+                        (click)="togglePostForm()">{{ showBlogForm ? 'x Cancel' : '+ Answer' }}
+                </button>
             </div>
-            
+
             <div>
                 <app-blog-form
-                *ngIf="showPostForm"
-                [blogId]="blog?.id" 
-                (postCreated)="handlePostCreated($event)" ></app-blog-form>
+                        *ngIf="showBlogForm"
+                        [blogId]="blog?.id"
+                        (postCreated)="handlePostCreated($event)"></app-blog-form>
             </div>
 
             <div class="antwort">
@@ -61,7 +63,7 @@ export class BlogDetailsComponent implements OnInit {
     timestamp: string | undefined;
 
     //boolean for create answer
-    showPostForm: boolean = false;
+    showBlogForm: boolean = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -101,13 +103,13 @@ export class BlogDetailsComponent implements OnInit {
 
     //switch to true when clicked on button
     togglePostForm(){
-        this.showPostForm = !this.showPostForm;
+        this.showBlogForm = !this.showBlogForm;
     }
 
     //new Post will be added to postList
     handlePostCreated(newPost: Post){
         this.postList?.push(newPost);
-        this.showPostForm = false;
+        this.showBlogForm = false;
         this.loadPostsForBlog();
     }
 }

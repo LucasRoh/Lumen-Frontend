@@ -11,14 +11,14 @@ import {Account} from "../../interfaces/account-interface";
   imports: [CommonModule, ReactiveFormsModule, FormsModule ],
   template: `
     <div class="create-post">
-      <form #postForm="ngForm" (ngSubmit)="handleSubmitAnswer(postForm)">
+      <form #blogForm="ngForm" (ngSubmit)="handleSubmitAnswer(blogForm)">
         <label for="answer"> Add an Answer </label>
         <textarea id="answer" name="answer" [(ngModel)]="post.answer" required></textarea>
         <div class="validate-meldung"
-             *ngIf="postForm.form.controls['answer']?.invalid && postForm.form.controls['answer']?.touched">
+             *ngIf="blogForm.form.controls['answer']?.invalid && blogForm.form.controls['answer']?.touched">
           Ya need to add an answer first.
         </div>
-        <button type="submit" [disabled]="postForm.invalid">Send Answer</button>
+        <button type="submit" [disabled]="blogForm.invalid">Send Answer</button>
       </form>
     </div>
   `,
@@ -28,7 +28,7 @@ export class BlogFormComponent {
   @Input() blogId: Number | undefined;
   @Output() postCreated = new EventEmitter<Post>();
 
-  defaultAccount: Account=     {
+  defaultAccount: Account= {
     id_account: 5,
     name: "SuperHacker",
     password: "1234",
