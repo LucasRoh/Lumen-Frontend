@@ -5,6 +5,7 @@ import {DetailComponent} from "./src/app/pages/detail/detail.component";
 import {BlogFormComponent} from "./src/app/blog-details-components/blog-form/blog-form.component";
 import {AccountComponent} from "./src/app/account/account.component";
 import {LoginComponent} from "./src/app/login/login.component";
+import {TagComponent} from "./src/app/tag/tag.component";
 
 const routeConfig: Routes = [
     {
@@ -36,7 +37,11 @@ const routeConfig: Routes = [
     {
         path: 'blogs/:id/post',
         component: BlogFormComponent,
-    }
-];
+    }, {
+        path: 'tags',
+        component: TagComponent,
+        title: 'Tag Page'
+
+    }];
 
 export default routeConfig;

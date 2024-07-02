@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Blog} from "../interfaces/blog-interface";
 import {Post} from "../interfaces/post-interface";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {firstValueFrom, lastValueFrom, Observable} from "rxjs";
 
 
 @Injectable({
@@ -49,12 +49,10 @@ export class BlogService {
 
   createPostByBlogId(id: Number, post: Post): Observable<Post>{
     const url = `${this.url}/${id}/post`;
-    return this.http.post<Post>(url, post,{
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    })
-
+    return this.http.post<Post>(url, post)
 }
+  async createPostAsPromise(blogId: Number, post: Post) : Promise<Post>{
+    return lastValueFrom(this.createPostByBlogId(blogId, post));
+  }
 
 }
