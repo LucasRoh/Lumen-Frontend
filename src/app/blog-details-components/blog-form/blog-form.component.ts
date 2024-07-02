@@ -4,6 +4,8 @@ import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {Post} from "../../interfaces/post-interface";
 import {BlogService} from "../../services/blog.service";
 import {Account} from "../../interfaces/account-interface";
+import {AccountService} from "../../services/account.service";
+
 
 @Component({
   selector: 'app-blog-form',
@@ -28,6 +30,12 @@ export class BlogFormComponent {
   @Input() blogId: Number | undefined;
   @Output() postCreated = new EventEmitter<Post>();
 
+  account: Account={
+    id_account: 0,
+    name: "",
+    password:"",
+    imagePath:""
+  }
   defaultAccount: Account= {
     id_account: 5,
     name: "SuperHacker",
@@ -39,17 +47,32 @@ export class BlogFormComponent {
     answer : '',
     likes: 0,
     timestamp: new Date().toISOString(),
-    account: this.defaultAccount,
+    account: this.account
   };
 
   constructor(
       private blogService: BlogService,
-  ) {
+      private accountService: AccountService,) {
+  }
+
+  loadAccountForPost(){
+    this.account = this.accountService.getLoginAccount();
+    this.post.account = this.account
+  }
+
+  public loggedIn(): boolean {
+    if (localStorage.getItem("loggedIn") === "true") {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   async handleSubmitAnswer(form: NgForm) : Promise<void> {
     if(!this.blogId || form.invalid) return;
+    if(!this.loggedIn()) return ;
     try {
+      this.loadAccountForPost()
       const createdPost = await this.blogService.createPostAsPromise(this.blogId, this.post);
       this.postCreated.emit(createdPost);
       form.resetForm();

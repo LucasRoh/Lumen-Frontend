@@ -2,6 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AccountService} from "../services/account.service";
 import {PostService} from "../services/post.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-account',
@@ -20,13 +21,18 @@ import {PostService} from "../services/post.service";
             <img class="profilePicture" src="https://www.ajc.org/sites/default/files/inline-images/Term%208%20-%20Pepe%20the%20FrogInline-300xflex.jpg">
             <label>10 Likes</label>
         </form>
+        
+        <button type="button" (click)="logOut()">Log Out</button>
+        
     `,
     styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
     likes: number = 0;
 
-    constructor(private postService: PostService) {
+    constructor(private postService: PostService,
+    private accountService: AccountService,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -34,6 +40,11 @@ export class AccountComponent implements OnInit {
             .subscribe((result) => {
                 this.likes = result;
             })
+    }
+
+    logOut(){
+        this.accountService.logOut()
+        this.router.navigate(['/'])
     }
 
 

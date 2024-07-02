@@ -29,7 +29,7 @@ import {BlogFormComponent} from "../blog-form/blog-form.component";
                 <p>This are the tags: still empty now</p>
             </section>
 
-            <div class="wrap-button">
+            <div class="wrap-button" *ngIf="loggedIn()">
                 <button type="button" class="post-button"
                         (click)="togglePostForm()">{{ showBlogForm ? 'x Cancel' : '+ Answer' }}
                 </button>
@@ -73,6 +73,14 @@ export class BlogDetailsComponent implements OnInit {
     ngOnInit() {
         this.loadBlogs();
         this.loadPostsForBlog();
+    }
+
+    public loggedIn(): boolean {
+        if (localStorage.getItem("loggedIn") === "true") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     loadBlogs() {

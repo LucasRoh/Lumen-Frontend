@@ -58,5 +58,12 @@ export class PostService {
     // TODO load user-id from logged-in user
     return this.http.get(`${this.url}/user/${userId}/likes`)
   }
+
+  deletePost(postId: number) : Observable<any> {
+    const url = `${this.url}/${postId}`;
+    return this.http.delete(url)
+  }
+
+
 }
 

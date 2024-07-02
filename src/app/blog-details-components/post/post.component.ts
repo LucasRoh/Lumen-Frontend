@@ -6,6 +6,7 @@ import {PostService} from "../../services/post.service";
 import {Comment} from "../../interfaces/comment-interface";
 import {CommentFormComponent} from "../comment-form/comment-form.component";
 import { ChangeDetectorRef } from '@angular/core';
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-post',
@@ -18,8 +19,10 @@ import { ChangeDetectorRef } from '@angular/core';
         <p>User: {{ post.account?.name }}</p>
       </div>
       <p class="post-answer">{{ post.answer }}</p>
-      <div class="post-blc">
+      <div class="post-blc" *ngIf="loggedIn()">
         <button type="button" class="comment-button" (click)="toggleCommentForm()" >{{ showCommentForm ? "x Cancel": "+ Comment" }}</button>
+        <button type="button" class="edit-button" *ngIf="canIEditAndDelete()"> Edit </button>
+        <button type="button" class="delete-button" *ngIf="canIEditAndDelete()"> Delete </button>
         
         <img class="post-likes" src="../../../assets/images/Like.png" alt="abcd" (click)="onClick()">
         <p> {{post.likes}}</p>
@@ -32,7 +35,9 @@ import { ChangeDetectorRef } from '@angular/core';
           (commentCreated)="handleCommentCreated($event)"
       ></app-comment-form>
     </div>
-    <app-comment *ngFor="let comment of commentList" [comment]="comment"></app-comment>
+
+        <app-comment *ngFor="let comment of commentList" [comment]="comment"></app-comment>
+
   `,
   styleUrls: ['./post.component.css']
 })
@@ -45,7 +50,8 @@ export class PostComponent implements OnInit{
 
   constructor(
       private postService: PostService,
-        private changeDetectorRef: ChangeDetectorRef
+      private accountService: AccountService,
+      private changeDetectorRef: ChangeDetectorRef
   ) {
   }
 
@@ -56,9 +62,12 @@ export class PostComponent implements OnInit{
       return false;
     }
   }
+
   ngOnInit(): void {
     this.loadCommentsByPostId()
   }
+
+
   async reloadLikes() {
     const updatedPost = await this.postService.getPostById(this.post.id);
     this.post.likes = updatedPost.likes;
@@ -70,8 +79,6 @@ export class PostComponent implements OnInit{
     if(this.loggedIn()){
     if(this.likeStatus){
     this.postService.addLikeToPost(this.post, this.likeStatus).then(() => {
-
-
 
     this.reloadLikes();
     })
@@ -86,10 +93,7 @@ export class PostComponent implements OnInit{
   }else{
   alert("You Have to be Logged Iny")
 }
-
 }
-
-
 
   loadCommentsByPostId(){
     this.postService.getCommentsByPostId(this.post.id).then(comments => {
@@ -102,11 +106,23 @@ export class PostComponent implements OnInit{
     this.showCommentForm = !this.showCommentForm;
   }
 
+  // will be called, after the comment is created in the component: comment-form
   handleCommentCreated(newComment: Comment){
     this.commentList.push(newComment);
     this.showCommentForm=false;
     this.loadCommentsByPostId();
   }
+
+  // will show edit-button and delete-button if the logged-in Account has same Id like post.account
+  canIEditAndDelete(): boolean{
+    const account = this.accountService.getLoginAccount();
+    if(account && account.id_account === this.post.account?.id_account){
+      return true;
+    }else {return false}
+  }
+
+
+  handleDelete(){}
 
 
 
