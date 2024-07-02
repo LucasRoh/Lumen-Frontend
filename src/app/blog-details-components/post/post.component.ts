@@ -38,6 +38,13 @@ export class PostComponent implements OnInit{
   ) {
   }
 
+  public loggedIn(): boolean {
+    if (localStorage.getItem("loggedIn") === "true") {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
 
     this.loadCommentsByPostId()
@@ -48,9 +55,12 @@ export class PostComponent implements OnInit{
     this.changeDetectorRef.detectChanges();
   }
 
+
   onClick(){
+    if(this.loggedIn()){
     if(this.likeStatus){
     this.postService.addLikeToPost(this.post, this.likeStatus).then(() => {
+
 
 
     this.reloadLikes();
@@ -62,7 +72,12 @@ export class PostComponent implements OnInit{
       })
       this.likeStatus = true
     }
-  }
+
+  }else{
+  alert("You Have to be Logged Iny")
+}
+
+}
 
 
 

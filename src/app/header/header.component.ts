@@ -13,7 +13,6 @@ import {RouterLink} from "@angular/router";
                 <img class="header-images" [src]="tagsUrl" alt="Logo">
             </section>
             <section>
-                <img class="header-images" [src]="shopUrl"  alt="Logo" id="shopUrl" routerLink="app/shop">
                 <img class="header-images" *ngIf="!loggedIn()" [src]="profilUrl" alt="Logo" routerLink="app/login">
                 <img class="header-images" *ngIf="loggedIn()" [src]="profilUrl" alt="Logo" routerLink="app/account">
                 <img class="header-images" [src]="loginUrl" alt="Logo">
@@ -30,7 +29,6 @@ export class HeaderComponent {
     tagsUrl = "/assets/images/Tag.png";
     profilUrl = "/assets/images/DefaultAccountImage.png";
     loginUrl = "/assets/images/Login.png";
-    shopUrl="/assets/images/shop.png";
     commentUrl = "/assets/images/Comment.png";
 
     protected loggedIn(): boolean {
