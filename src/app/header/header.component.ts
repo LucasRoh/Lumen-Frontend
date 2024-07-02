@@ -10,7 +10,7 @@ import {RouterLink} from "@angular/router";
             <section>
                 <img class="header-images" [src]="logoUrl" alt="Logo" id="logo" routerLink="">
                 <img class="header-images" [src]="createUrl" alt="Logo" routerLink="blog/create">
-                <img class="header-images" [src]="tagsUrl" alt="Logo">
+                <img class="header-images" [src]="tagsUrl" alt="Logo" routerLink="tags">
             </section>
             <section>
                 <img class="header-images" [src]="shopUrl"  alt="Logo" id="shopUrl" routerLink="app/shop">
