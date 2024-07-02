@@ -7,11 +7,12 @@ import {Post} from "../../interfaces/post-interface";
 import {PostService} from "../../services/post.service";
 import {PostComponent} from "../post/post.component";
 import {CommentComponent} from "../comment/comment.component";
+import {BlogFormComponent} from "../blog-form/blog-form.component";
 
 @Component({
     selector: 'app-blog-details',
     standalone: true,
-    imports: [CommonModule, PostComponent, CommentComponent],
+    imports: [CommonModule, PostComponent, CommentComponent, BlogFormComponent],
     template: `
         <article>
             <div class="antwort">
@@ -23,13 +24,20 @@ import {CommentComponent} from "../comment/comment.component";
                     <p>User: {{ blog?.account?.name }}</p>
                     <p>Date: {{ timestamp }}</p>
                 </div>
-                <h1>Here comes the title: {{ blog?.title }}</h1>
-                <p>Here comes the Question: {{ blog?.question }}</p>
+                <h1>{{ blog?.title }}</h1>
+                <p class="question-content">{{ blog?.question }}</p>
                 <p>This are the tags: still empty now</p>
             </section>
 
             <div class="wrap-button">
-                <button type="button" class="post-button">+ Answer</button>
+                <button type="button" class="post-button" (click)="togglePostForm()" >{{showPostForm ? 'x Cancel' : '+ Answer'  }}</button>
+            </div>
+            
+            <div>
+                <app-blog-form
+                *ngIf="showPostForm"
+                [blogId]="blog?.id" 
+                (postCreated)="handlePostCreated($event)" ></app-blog-form>
             </div>
 
             <div class="antwort">
@@ -52,6 +60,9 @@ export class BlogDetailsComponent implements OnInit {
     blogId: number = Number(this.route.snapshot.params['id']);
     timestamp: string | undefined;
 
+    //boolean for create answer
+    showPostForm: boolean = false;
+
     constructor(
         private route: ActivatedRoute,
         private blogService: BlogService,
@@ -60,7 +71,6 @@ export class BlogDetailsComponent implements OnInit {
     ngOnInit() {
         this.loadBlogs();
         this.loadPostsForBlog();
-
     }
 
     loadBlogs() {
@@ -75,13 +85,10 @@ export class BlogDetailsComponent implements OnInit {
             posts => {
                 this.postList = posts;
                 this.loadCommentsForPost()
-            },
-            (error) => {
-                console.log(error)
-            }
+            }, (error) => {
+                console.log(error)}
         );
     }
-
     loadCommentsForPost(): void {
         this.postList?.forEach(post => {
             this.postService.getCommentsByPostId(post.id).then(comments => {
@@ -90,5 +97,17 @@ export class BlogDetailsComponent implements OnInit {
                 console.log(error)
             })
         })
+    }
+
+    //switch to true when clicked on button
+    togglePostForm(){
+        this.showPostForm = !this.showPostForm;
+    }
+
+    //new Post will be added to postList
+    handlePostCreated(newPost: Post){
+        this.postList?.push(newPost);
+        this.showPostForm = false;
+        this.loadPostsForBlog();
     }
 }

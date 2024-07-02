@@ -10,10 +10,11 @@
 .comment-button{
     border: none;
     background-color: white;
-    width: 80px;
+    width: 100px;
 }
 .comment-button:hover{
-    border-bottom: solid 1px black;
+    background-color: #e6e6e6;
+    border-radius: 10px;
 }
 
 .post-user-profil{
@@ -55,4 +56,8 @@
 .post-likes:hover{
     height: 28px;
     width: auto;
+}
+
+.post-answer{
+    font-size: 1.2em;
 }

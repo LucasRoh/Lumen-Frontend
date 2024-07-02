@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {catchError, Observable, throwError} from 'rxjs';
+import {catchError, lastValueFrom, Observable, throwError} from 'rxjs';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Post} from "../interfaces/post-interface";
 import {Comment} from "../interfaces/comment-interface";
@@ -31,6 +31,16 @@ export class PostService {
   createPost(post : Post) {
     return this.http.post(this.url, post)
   }
+
+  createCommentByPostId(postId: Number, comment:Comment) : Observable<any>{
+    const commenturl = `${this.url}/${postId}/comment`
+    return this.http.post<Comment>(commenturl, comment)
+  }
+
+  async createCommentAsPromised(postId: Number, comment: Comment): Promise<Comment>{
+    return lastValueFrom(this.createCommentByPostId(postId, comment))
+  }
+
 
   private handleError(error: HttpErrorResponse) {
     console.error('Error posting data:', error);

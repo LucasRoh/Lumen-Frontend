@@ -1,0 +1,46 @@
+.create-comment{
+    width: 560px;
+    margin: auto;
+    margin-top: 20px;
+    border: solid 3px #cdcbcb;
+    border-radius: 10px;
+    padding: 0 20px 15px 20px;
+}
+
+.create-comment label, .create-comment button, .create-comment textarea, .validate-meldung{
+    display: block;
+    margin-top: 10px;
+    font-size: 1em;
+    font-family: "Roboto Thin", sans-serif;
+}
+
+
+
+.create-comment textarea{
+    width: 550px;
+    height: 80px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #ffffff;
+    resize: none;
+}
+
+.create-comment button{
+    border: none;
+    background-color: #e6d596;
+    font-size: 13px;
+    min-height: 30px;
+    min-width:150px;
+    border-radius: 10px;
+}
+
+.create-comment button:hover{
+    background-color: #ccb776;
+}
+
+.validate-meldung{
+    font-family: "Roboto Thin", sans-serif;
+    color: red;
+}
