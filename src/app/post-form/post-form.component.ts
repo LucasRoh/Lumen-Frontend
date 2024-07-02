@@ -5,6 +5,7 @@ import {Blog} from "../interfaces/blog-interface";
 import {BlogService} from "../services/blog.service";
 
 
+
 @Component({
   selector: 'app-post-form',
   standalone: true,
@@ -12,13 +13,13 @@ import {BlogService} from "../services/blog.service";
   template: `
     <main>
       <form (ngSubmit)="handleSubmit()">
-        
-        <input class="title" type="text" id="titel" placeholder="Titel" name="title"  [(ngModel)]="blog.title">
-        
-        <textarea class="textArea" id="text" placeholder="Text" name="text" [(ngModel)]="blog.question"></textarea>    
-        
-        <input class="tags" type="text" id="tags" formControlName="Tags" placeholder="Tags" name="tags">
-        <img class="submit" [src]=submitURL alt="Submit"  (click)="handleSubmit()" > 
+
+        <input class="title" type="text" id="titel" placeholder="Titel" name="title" [(ngModel)]="blog.title">
+
+        <textarea class="textArea" id="text" placeholder="Text" name="text" [(ngModel)]="blog.question"></textarea>
+
+        <input class="tags" type="number" id="tag" placeholder="Tags" name="tags" [(ngModel)]="blog.tag" >
+        <img class="submit" [src]=submitURL alt="Submit" (click)="handleSubmit()">
       </form>
     </main>
   `,
@@ -44,8 +45,8 @@ export class PostFormComponent {
     id: 0,
     title: '',
     question: '',
-    timestamp: new Date().toISOString()
-  }
+    timestamp: new Date().toISOString(),
+    }
 
   constructor(private blogService: BlogService) {
   }
