@@ -1,0 +1,20 @@
+.main {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    row-gap: 3em;
+    margin-top: 2em;
+}
+
+.tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D9D9D9; /* Grey color */
+    border-radius: 15px;
+    width: 12em;  /* Set the width */
+    height: 12em; /* Set the height */
+    font-family: Inter, sans-serif;
+    font-weight: bold;
+    margin: 0 auto;
+}
