@@ -21,7 +21,7 @@ import { ChangeDetectorRef } from '@angular/core';
       <div class="post-blc">
         <button type="button" class="comment-button" (click)="toggleCommentForm()" >{{ showCommentForm ? "x Cancel": "+ Comment" }}</button>
         
-        <img class="post-likes" src="../../../assets/images/Like.png" alt="abcd">
+        <img class="post-likes" src="../../../assets/images/Like.png" alt="abcd" (click)="onClick()">
         <p> {{post.likes}}</p>
       </div>
     </div>
