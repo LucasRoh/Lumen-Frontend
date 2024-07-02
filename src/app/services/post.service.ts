@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {catchError, lastValueFrom, Observable, throwError} from 'rxjs';
+import {catchError, lastValueFrom, Observable, throwError, mergeMapTo} from 'rxjs';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Post} from "../interfaces/post-interface";
 import {Comment} from "../interfaces/comment-interface";
@@ -11,24 +11,25 @@ import {Comment} from "../interfaces/comment-interface";
 export class PostService {
   url = 'http://localhost:8080/posts'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  async getAllPosts() : Promise<Post[]> {
+  async getAllPosts(): Promise<Post[]> {
     const data = await fetch(this.url);
     return await data.json() ?? [];
   }
 
-  async getPostById(id: number) : Promise<Post> {
+  async getPostById(id: number): Promise<Post> {
     const data = await fetch(`${this.url}/${id}`);
     return await data.json() ?? {};
   }
 
-  async getCommentsByPostId(id: number): Promise<Comment[]>{
+  async getCommentsByPostId(id: number): Promise<Comment[]> {
     const data = await fetch(`${this.url}/${id}/comments`)
     return await data.json() ?? [];
   }
 
-  createPost(post : Post) {
+  createPost(post: Post) {
     return this.http.post(this.url, post)
   }
 
@@ -46,9 +47,16 @@ export class PostService {
     console.error('Error posting data:', error);
     return throwError(() => new Error('Failed to post data, please try again later.'));
   }
-  async addLikeToPost(post : Post, boolean : boolean): Promise<void> {
+
+  async addLikeToPost(post: Post, boolean: boolean): Promise<void> {
     await fetch(`${this.url}/${post.id}/likes?isLike=${boolean}`, {
       method: 'PUT',
     })
-    }
+  }
+
+  countLikesForUser(userId: number): Observable<any> {
+    // TODO load user-id from logged-in user
+    return this.http.get(`${this.url}/user/${userId}/likes`)
+  }
 }
+
