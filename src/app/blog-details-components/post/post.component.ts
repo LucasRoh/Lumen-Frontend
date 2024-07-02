@@ -5,6 +5,7 @@ import {CommentComponent} from "../comment/comment.component";
 import {PostService} from "../../services/post.service";
 import {Comment} from "../../interfaces/comment-interface";
 import {CommentFormComponent} from "../comment-form/comment-form.component";
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-post',
@@ -37,19 +38,43 @@ import {CommentFormComponent} from "../comment-form/comment-form.component";
 })
 export class PostComponent implements OnInit{
   @Input() post!: Post;
-
+  likeStatus : boolean = true;
   commentList: Comment[] = [];
 
   showCommentForm: boolean = false;
 
   constructor(
       private postService: PostService,
+        private changeDetectorRef: ChangeDetectorRef
   ) {
   }
 
   ngOnInit(): void {
     this.loadCommentsByPostId()
   }
+  async reloadLikes() {
+    const updatedPost = await this.postService.getPostById(this.post.id);
+    this.post.likes = updatedPost.likes;
+    this.changeDetectorRef.detectChanges();
+  }
+
+  onClick(){
+    if(this.likeStatus){
+    this.postService.addLikeToPost(this.post, this.likeStatus).then(() => {
+
+
+    this.reloadLikes();
+    })
+      this.likeStatus = false}
+    else {
+      this.postService.addLikeToPost(this.post, this.likeStatus).then(() => {
+        this.reloadLikes();
+      })
+      this.likeStatus = true
+    }
+  }
+
+
 
   loadCommentsByPostId(){
     this.postService.getCommentsByPostId(this.post.id).then(comments => {
