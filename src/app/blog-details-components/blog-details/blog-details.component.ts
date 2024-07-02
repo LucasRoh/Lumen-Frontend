@@ -20,7 +20,7 @@ import {BlogFormComponent} from "../blog-form/blog-form.component";
             </div>
             <section>
                 <div class="user-profil">
-                    <img src="../../../assets/images/Profil.png" alt="abcd">
+                    <div class="wrap-img"><img src="{{blog?.account?.imagePath}}" alt="abcd"></div>
                     <p>User: {{ blog?.account?.name }}</p>
                     <p>Date: {{ timestamp }}</p>
                 </div>

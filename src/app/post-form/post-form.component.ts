@@ -17,7 +17,7 @@ import {BlogService} from "../services/blog.service";
         
         <textarea class="textArea" id="text" placeholder="Text" name="text" [(ngModel)]="blog.question"></textarea>    
         
-        <!--<input class="tags" type="text" id="tags" formControlName="Tags" placeholder="Tags" name="tags"¨>-->
+        <input class="tags" type="text" id="tags" formControlName="Tags" placeholder="Tags" name="tags">
         <img class="submit" [src]=submitURL alt="Submit"  (click)="handleSubmit()" > 
       </form>
     </main>
