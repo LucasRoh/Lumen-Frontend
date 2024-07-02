@@ -19,6 +19,7 @@ import {BlogService} from "../services/blog.service";
             </div>
             <h2 class="listing-heading">{{ blog.title }}</h2>
             <div class="info-container">
+                <p>#{{ blog.tag?.title }}</p>
                 <img id="answersImage" [src]="commentUrl" alt="Answer Count">
                 <p id="postCount">{{ postCount }}</p>
             </div>
