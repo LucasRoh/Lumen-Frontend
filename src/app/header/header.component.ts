@@ -18,7 +18,7 @@ import {RouterLink} from "@angular/router";
                 <img class="custom-header-images" *ngIf="profileSelection()==1" src="https://i.ytimg.com/vi/tzD9OxAHtzU/oar2.jpg?sqp=-oaymwEYCJUDENAFSFqQAgHyq4qpAwcIARUAAIhC&rs=AOn4CLAROSJukM30CxCMoacqsDFlBWSpnA" alt="Logo" routerLink="app/account">
                 <img class="custom-header-images" *ngIf="profileSelection()==2" src="https://cdn.unitycms.io/images/1H-QVquEqm0AiozooN6LlE.jpg?op=ocroped&val=1200,1200,1000,1000,0,0&sum=xB-n5ww5X7c" alt="Logo" routerLink="app/account">
                 <img class="custom-header-images" *ngIf="profileSelection()==3 " src="https://www.ajc.org/sites/default/files/inline-images/Term%208%20-%20Pepe%20the%20FrogInline-300xflex.jpg" alt="Logo" routerLink="app/account">
-                <img class="header-images" [src]="loginUrl" alt="Logo">
+                <img (click)="logout()" class="header-images" [src]="loginUrl" alt="Logo">
             </section>
         </header>
     `,
@@ -47,6 +47,10 @@ export class HeaderComponent {
         } else {
             return 0;
         }
+    }
+    protected logout(){
+        localStorage.removeItem("userId");
+        localStorage.removeItem("profile");
     }
 
     constructor() {
