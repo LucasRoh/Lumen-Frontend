@@ -32,12 +32,15 @@ export class LoginComponent {
         try {
             const accounts = await this.accountService.getAllAccounts();
             const account = accounts.find(acc => acc.name === username && acc.password === password);
+            const accountObject = accounts.find(account =>account.name === username && account.password === password);
+
 
             if (account) {
                 localStorage.setItem('userId', String(account.id_account));
-                location.href="/"
+                localStorage.setItem('account', JSON.stringify(accountObject));
+                location.href = "/"
                 console.log(account.id_account);
-            } else {
+            }else {
                 console.log("failed")
             }
         } catch (error) {

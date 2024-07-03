@@ -33,4 +33,26 @@ export class AccountService {
 
         return
     }
+
+  // to get login data from account(user): accountKey and getLoginAccountData
+  private readonly accountKey: string = 'account';
+
+  getLoginAccount(): any{
+    const accountJSON = localStorage.getItem(this.accountKey);
+    return accountJSON ? JSON.parse(accountJSON) : undefined;
+  }
+
+  // to logout, temporarely, remove if implemented by others > then remove button in login page
+  private readonly loginKey: string = 'loggedIn';
+  logOut(){
+    localStorage.removeItem(this.loginKey);
+    localStorage.removeItem(this.accountKey);
+  }
+
+  // to check if user is logged in
+    isLoggedIn():boolean{
+      const userId = localStorage.getItem('userId');
+      if (userId !== null) {return true}else {return false}
+    }
+
 }

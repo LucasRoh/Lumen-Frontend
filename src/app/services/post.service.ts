@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {catchError, lastValueFrom, Observable, throwError, mergeMapTo} from 'rxjs';
+import { lastValueFrom, Observable, throwError, mergeMapTo} from 'rxjs';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Post} from "../interfaces/post-interface";
 import {Comment} from "../interfaces/comment-interface";
@@ -58,5 +58,21 @@ export class PostService {
     // TODO load user-id from logged-in user
     return this.http.get(`${this.url}/user/${userId}/likes`)
   }
+
+  deletePost(postId: number) : Observable<void> {
+    const url = `${this.url}/${postId}`;
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*'})
+    return this.http.delete<void>(url, {headers})
+  }
+
+  async deletePostById(id: number) {
+    const data = await fetch(`${this.url}/${id}`, {
+      method: 'DELETE',
+    });
+    return
+  }
+
+
 }
 

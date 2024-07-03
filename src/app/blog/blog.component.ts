@@ -13,7 +13,7 @@ import {BlogService} from "../services/blog.service";
     template: `
         <section class="listing" [routerLink]="['/blogs',blog.id]">
             <div class="account-container">
-                <img id="accountImage" [src]="blog.account?.imagePath" alt="User Logo">
+                <div class="wrap-img"><img id="accountImage" [src]="blog.account?.imagePath" alt="User Logo"></div>
                 <p class="listing-account">{{ blog.account?.name }}</p>
                 <p class="listing-timestamp">{{ timestamp }}</p>
             </div>

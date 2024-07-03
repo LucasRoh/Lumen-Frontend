@@ -14,9 +14,9 @@
 }
 
 #accountImage {
-    height: 25px;
-    width: 25px;
-    padding-left: 1rem;
+    width: 100% ;
+    height: auto;
+
 }
 
 .listing-account {
@@ -52,5 +52,9 @@
 
 .listing-heading {
     margin: 1rem;
+}
+
+.wrap-img{
+    position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;
 }
 

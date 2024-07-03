@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { Account } from "../interfaces/account-interface";
 import { AccountService } from "../services/account.service"; // Import the AccountService
 
@@ -35,7 +35,8 @@ export class HeaderComponent implements OnInit {
     loginUrl = "/assets/images/Login.png";
     commentUrl = "/assets/images/Comment.png";
 
-    constructor(private accountService: AccountService) { } // Inject AccountService
+    constructor(private accountService: AccountService,
+                private router : Router,) { } // Inject AccountService
 
     async ngOnInit() {
         const userId = localStorage.getItem("userId");
@@ -60,5 +61,8 @@ export class HeaderComponent implements OnInit {
     protected logout() {
         localStorage.removeItem("userId");
         localStorage.removeItem("profile");
+        localStorage.removeItem('account');
+        this.router.navigate(['/'])
     }
+
 }

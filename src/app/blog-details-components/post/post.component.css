@@ -1,51 +1,73 @@
 .post{
     border: 3px solid #cdcbcb;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px 20px 20px 0;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 40px;
     width: 600px;
-}
-
-.comment-button{
-    border: none;
-    background-color: white;
-    width: 100px;
-}
-.comment-button:hover{
-    background-color: #e6e6e6;
-    border-radius: 10px;
 }
 
 .post-user-profil{
     display: flex;
 }
 
+/*to make profil pic round*/
+.wrap-img{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
 .post-user-profil img{
-    height: 20px;
-    width: auto;
+    width: 100%;
+    height: auto;
 }
 
 .post-user-profil p, .post-blc p{
     font-size: 1em;
     margin: 0;
-    padding: 0 0 0 5px;
+    padding: 3px 0 0 5px;
+}
+
+.post-user-profil p{
+    padding-top: 10px;
 }
 
 .post-blc{
     min-height: 30px;
     text-align: center;
     display: grid;
-    grid-template-columns: 1fr 2fr 30px 0.5fr;
+    grid-template-columns: auto 1fr 30px auto;
     grid-template-areas:
-    "button . img count";
+    "buttons . img count";
 }
-.post-blc button{
-    grid-area: button;
+.post-blc-buttons{
+    grid-area: buttons;
 }
+
+.comment-button:hover, .edit-button:hover{
+    background-color: #d8d8d8;
+}
+
+.delete-button:hover{
+    background-color: #ec9797;
+}
+
+.comment-button, .delete-button, .edit-button{
+    border: none;
+    width: 100px;
+    height: 100%;
+    border-radius: 10px;
+    margin-right: 10px;
+    background-color: #e6e6e6;
+}
+
 .post-blc p{
     grid-area: count;
     text-align: left;
+    margin-right: 50px;
 }
 .post-likes{
     height: 25px;
@@ -61,3 +83,7 @@
 .post-answer{
     font-size: 1.2em;
 }
+
+
+
+
