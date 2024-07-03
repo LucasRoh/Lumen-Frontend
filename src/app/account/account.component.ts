@@ -2,6 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AccountService} from "../services/account.service";
 import {PostService} from "../services/post.service";
+import {Router} from "@angular/router";
 import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
 import {CommentService} from "../services/comment.service";
 import {Account} from "../interfaces/account-interface";
@@ -31,7 +32,10 @@ import {Account} from "../interfaces/account-interface";
 })
 export class AccountComponent implements OnInit {
     likes: number = 0;
-    constructor(private postService: PostService, private accountService: AccountService) {
+
+    constructor(private postService: PostService,
+    private accountService: AccountService,
+                private router: Router) {
     }
 
     ngOnInit() {

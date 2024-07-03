@@ -7,8 +7,8 @@
 .comment{
     border: 3px solid #cdcbcb;
     padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
+    border-radius: 20px 50px 0 20px;
+    margin-top: 15px;
     margin-left: 50px;
 }
 
@@ -16,14 +16,40 @@
 .comment-user-profil{
     display: flex;
 }
+
+/*to make profil pic round*/
+.wrap-img{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
 .comment-user-profil img{
-    height: 20px;
-    width: auto;
+    width: 100%;
+    height: auto;
 }
 
 .comment-user-profil p{
     font-size: 1em;
     margin: 0;
-    padding: 0 0 0 5px;
+    padding: 5px 0 0 5px;
 
+}
+
+.comment-comment{
+    font-size: 1.1em;
+}
+
+.delete-button, .edit-button{
+    border: none;
+    width: 80px;
+    min-height: 25px;
+    border-radius: 10px;
+    margin-right: 10px;
+    background-color: #e6e6e6;
+}
+.delete-button:hover{
+    background-color: #d8d8d8;
 }
