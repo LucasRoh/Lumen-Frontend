@@ -1,6 +1,9 @@
-import {Component} from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {Router, RouterLink} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Router, RouterLink } from "@angular/router";
+import { Account } from "../interfaces/account-interface";
+import { AccountService } from "../services/account.service"; // Import the AccountService
+
 @Component({
     selector: 'app-header',
     standalone: true,
@@ -13,19 +16,18 @@ import {Router, RouterLink} from "@angular/router";
                 <img class="header-images" [src]="tagsUrl" alt="Logo" routerLink="tags">
             </section>
             <section>
-                <img class="header-images" *ngIf="profileSelection()==4" [src]="profilUrl" alt="Logo" routerLink="app/login">
-                <img class="header-images" *ngIf="profileSelection()==0" [src]="profilUrl" alt="Logo" routerLink="app/account">
-                <img class="custom-header-images" *ngIf="profileSelection()==1" src="https://i.ytimg.com/vi/tzD9OxAHtzU/oar2.jpg?sqp=-oaymwEYCJUDENAFSFqQAgHyq4qpAwcIARUAAIhC&rs=AOn4CLAROSJukM30CxCMoacqsDFlBWSpnA" alt="Logo" routerLink="app/account">
-                <img class="custom-header-images" *ngIf="profileSelection()==2" src="https://cdn.unitycms.io/images/1H-QVquEqm0AiozooN6LlE.jpg?op=ocroped&val=1200,1200,1000,1000,0,0&sum=xB-n5ww5X7c" alt="Logo" routerLink="app/account">
-                <img class="custom-header-images" *ngIf="profileSelection()==3 " src="https://www.ajc.org/sites/default/files/inline-images/Term%208%20-%20Pepe%20the%20FrogInline-300xflex.jpg" alt="Logo" routerLink="app/account">
-                <img (click)="logout()" class="header-images" [src]="loginUrl" alt="Logo">
+                <img class="header-images" *ngIf="!loggedIn()" [src]="profilUrl" alt="Logo" routerLink="app/login">
+               
+                <img class="custom-header-images" *ngIf="loggedIn()" [src]="account?.imagePath==null?profilUrl:account?.imagePath" alt="Logo" routerLink= "app/account">
+                <img *ngIf="!loggedIn()" class="header-images" [src]="loginUrl" alt="Logo" routerLink="app/register">
+                <img *ngIf="loggedIn()" (click)="logout()" class="header-images" [src]="loginUrl" alt="Logo">
             </section>
         </header>
     `,
     styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-
+export class HeaderComponent implements OnInit {
+    account: Account | undefined;
     logoUrl = "/assets/images/Logo.png";
     createUrl = "/assets/images/Create.png";
     tagsUrl = "/assets/images/Tag.png";
@@ -33,31 +35,34 @@ export class HeaderComponent {
     loginUrl = "/assets/images/Login.png";
     commentUrl = "/assets/images/Comment.png";
 
+    constructor(private accountService: AccountService,
+                private router : Router,) { } // Inject AccountService
 
-
-    protected profileSelection(): Number {
-        if (localStorage.getItem("profile") === "SkibidiToilet") {
-            return 1;
-        } else if (localStorage.getItem("profile") === "WomanWhoKnows") {
-            return 2;
-        } else if (localStorage.getItem("profile") === "Pepe") {
-            return 3;
-        } else if(localStorage.getItem("userId") === null) {
-            return 4;
-        } else {
-            return 0;
+    async ngOnInit() {
+        const userId = localStorage.getItem("userId");
+        if (userId) {
+            try {
+                this.account = await this.accountService.getAccountById(Number(userId));
+                console.log(this.account)
+            } catch (error) {
+                console.error('Error fetching account:', error);
+            }
         }
     }
-    protected logout(){
+
+    protected loggedIn(): boolean {
+        if (localStorage.getItem("userId") != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected logout() {
         localStorage.removeItem("userId");
         localStorage.removeItem("profile");
         localStorage.removeItem('account');
         this.router.navigate(['/'])
-    }
-
-    constructor(
-        private router : Router,
-    ) {
     }
 
 }

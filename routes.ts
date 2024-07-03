@@ -6,6 +6,7 @@ import {BlogFormComponent} from "./src/app/blog-details-components/blog-form/blo
 import {AccountComponent} from "./src/app/account/account.component";
 import {LoginComponent} from "./src/app/login/login.component";
 import {TagComponent} from "./src/app/tag/tag.component";
+import {RegisterComponent} from "./src/app/register/register.component";
 
 const routeConfig: Routes = [
     {
@@ -42,6 +43,10 @@ const routeConfig: Routes = [
         component: TagComponent,
         title: 'Tag Page'
 
+    },{
+        path:'app/register',
+        component: RegisterComponent,
+        title: 'Register Page'
     }];
 
 export default routeConfig;

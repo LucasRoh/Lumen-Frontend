@@ -15,6 +15,7 @@ export class BlogService {
   url = 'http://localhost:8080/blogs'
 
 
+
   constructor(
       private http: HttpClient,
   ) { }
@@ -33,8 +34,8 @@ export class BlogService {
     const data = await fetch(`${this.url}/${id}`);
     return await data.json() ?? {};
   }
-  async createBlog(blog: Blog): Promise<void> {
-    await fetch(this.url, {
+  async createBlog(blog: Blog, value : Number): Promise<void> {
+    await fetch(`${this.url}/${value}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
