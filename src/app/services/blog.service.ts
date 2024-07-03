@@ -24,6 +24,10 @@ export class BlogService {
     const data = await fetch(this.url);
     return await data.json() ?? [];
   }
+  async getBlogByTag(id : number) : Promise<Blog[]> {
+    const data = await fetch(`${this.url}/tag/${id}`);
+    return await data.json() ?? [];
+  }
 
   async getPostCount(id: Number) : Promise<Number> {
     const data = await fetch(`${this.url}/count/${id}`);
@@ -56,5 +60,7 @@ export class BlogService {
   async createPostAsPromise(blogId: Number, post: Post) : Promise<Post>{
     return lastValueFrom(this.createPostByBlogId(blogId, post));
   }
+
+
 
 }

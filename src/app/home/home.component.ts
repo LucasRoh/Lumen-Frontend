@@ -83,5 +83,6 @@ export class HomeComponent {
         this.blogList.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
     }
 
+
     protected readonly onchange = onchange;
 }

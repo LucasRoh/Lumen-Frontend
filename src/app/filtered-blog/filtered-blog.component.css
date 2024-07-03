@@ -1,0 +1,60 @@
+.listing {
+    border: darkgrey 1px dotted;
+    border-radius: 50px;
+    padding: 1rem;
+    background-color: lightgray;
+    width: max(500px, 50vw);
+}
+
+.account-container {
+    display:flex;
+    justify-content: start;
+    align-items: center;
+    gap: 2rem;
+}
+
+#accountImage {
+    width: 100% ;
+    height: auto;
+
+}
+
+.listing-account {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.info-container {
+    display: flex;
+    justify-content: end;
+    gap: 1.5rem;
+    align-items: center;
+    margin: 0;
+}
+
+.listing:hover {
+    cursor: pointer;
+}
+
+#answersImage {
+    height: 22px;
+    width: 22px;
+}
+
+#postCount {
+    font-size: 1.35rem;
+    margin: 0 1rem 0 0;
+}
+
+.listing-timestamp {
+    font-style: italic;
+}
+
+.listing-heading {
+    margin: 1rem;
+}
+
+.wrap-img{
+    position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;
+}
+
