@@ -47,6 +47,7 @@ export class BlogComponent implements OnInit {
     ngOnInit(): void {
         if (this.blog && this.blog.id) {
             this.blogService.getPostCount(this.blog.id).then((postCount: Number) => {
+                console.log(this.blog)
                 this.postCount = postCount;
             });
         }

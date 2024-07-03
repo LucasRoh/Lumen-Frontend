@@ -57,11 +57,16 @@ main{
     align-items: center;
     text-align: center;
     height: 4em;
-    width: 30em;
+    width: 25em;
     border: 3px solid #D4AF38;
     border-radius: 5px;
     background-color: #D4AF38;
     opacity: 60%;
     margin-top: 2em;
+    overflow-y: scroll;
+    flex-direction: column;
+
 
 }
+
+
