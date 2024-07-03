@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Blog} from "../interfaces/blog-interface";
 import {Account} from "../interfaces/account-interface";
+import {Post} from "../interfaces/post-interface";
 
 @Injectable({
     providedIn: 'root'
@@ -32,5 +33,23 @@ export class AccountService {
         )
 
         return
+    }
+    async post(account: Account | null): Promise<void> {
+        if (account === null) {
+            throw new Error('Account data is null');
+        }
+
+        const response = await fetch(this.url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(account),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to post account data');
+        }
+
     }
 }
