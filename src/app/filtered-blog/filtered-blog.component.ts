@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import { BlogService } from "../services/blog.service";
 import { Blog } from "../interfaces/blog-interface";
 import { CommonModule } from '@angular/common';
@@ -7,9 +7,9 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-filtered-blog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   template: `
-    <section *ngFor="let blog of blogsByTag" class="listing">
+    <section *ngFor="let blog of blogsByTag" class="listing" [routerLink]="['/blogs',blog.id]">
       <div class="account-container">
         <div class="wrap-img"><img id="accountImage" [src]="blog.account?.imagePath" alt="User Logo"></div>
         <p class="listing-account">{{ blog.account?.name }}</p>
@@ -18,8 +18,6 @@ import { CommonModule } from '@angular/common';
       <h2 class="listing-heading">{{ blog.title }}</h2>
       <div class="info-container">
         <p>#{{ blog.tag?.title }}</p>
-        <img id="answersImage" [src]="commentUrl" alt="Answer Count">
-        
       </div>
     </section>
   `,

@@ -10,7 +10,7 @@ import {RouterLink} from "@angular/router";
   imports: [CommonModule, RouterLink],
   template: `
     <main class="main">
-      <a class="tag" *ngFor="let blog of blogs" routerLink="/blogs/tags/{{ blog.name }}">
+      <a class="tag" *ngFor="let blog of blogs" routerLink="/blogs/tags/{{ blog.title }}">
         {{ blog.title  }}
       </a>
     </main>
