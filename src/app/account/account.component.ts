@@ -53,7 +53,9 @@ export class AccountComponent implements OnInit {
         }
         localStorage.removeItem("profile")
         localStorage.setItem("profile", "SkibidiToilet")
-        this.accountService.setPathImage(parseInt(userId), "https://i.ytimg.com/vi/tzD9OxAHtzU/oar2.jpg?sqp=-oaymwEYCJUDENAFSFqQAgHyq4qpAwcIARUAAIhC&rs=AOn4CLAROSJukM30CxCMoacqsDFlBWSpnA");
+        this.accountService.setPathImage(parseInt(userId), "https://i.ytimg.com/vi/tzD9OxAHtzU/oar2.jpg?sqp=-oaymwEYCJUDENAFSFqQAgHyq4qpAwcIARUAAIhC&rs=AOn4CLAROSJukM30CxCMoacqsDFlBWSpnA").then(() => {
+            window.location.reload();
+        });
     }
 
     protected WomanWhoKnowsProfile() {
@@ -64,7 +66,9 @@ export class AccountComponent implements OnInit {
         if (this.likes >= 5) {
             localStorage.removeItem("profile")
             localStorage.setItem("profile", "WomanWhoKnows")
-            this.accountService.setPathImage(parseInt(userId), "https://cdn.unitycms.io/images/1H-QVquEqm0AiozooN6LlE.jpg?op=ocroped&val=1200,1200,1000,1000,0,0&sum=xB-n5ww5X7c");
+            this.accountService.setPathImage(parseInt(userId), "https://cdn.unitycms.io/images/1H-QVquEqm0AiozooN6LlE.jpg?op=ocroped&val=1200,1200,1000,1000,0,0&sum=xB-n5ww5X7c").then(() =>{
+                window.location.reload()
+            });
         } else {
             alert("You need more Likes")
         }
@@ -78,7 +82,9 @@ export class AccountComponent implements OnInit {
         if (this.likes >= 10) {
             localStorage.removeItem("profile")
             localStorage.setItem("profile", "Pepe")
-            this.accountService.setPathImage(parseInt(userId), "https://www.ajc.org/sites/default/files/inline-images/Term%208%20-%20Pepe%20the%20FrogInline-300xflex.jpg");
+            this.accountService.setPathImage(parseInt(userId), "https://www.ajc.org/sites/default/files/inline-images/Term%208%20-%20Pepe%20the%20FrogInline-300xflex.jpg").then(()=>{
+                window.location.reload();
+            });
         } else {
             alert("You need more Likes")
         }
