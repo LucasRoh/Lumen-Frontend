@@ -39,7 +39,10 @@ import {error} from "protractor";
       ></app-comment-form>
     </div>
 
-        <app-comment *ngFor="let comment of commentList" [comment]="comment"></app-comment>
+        <app-comment 
+                *ngFor="let comment of commentList" [comment]="comment"
+                (deletedComment)="handleCommentDeleted($event)"
+        ></app-comment>
 
   `,
   styleUrls: ['./post.component.css']
@@ -163,7 +166,10 @@ export class PostComponent implements OnInit {
 
   }
 
+  handleCommentDeleted(commentId:number){
+        const confirm = window.confirm("Are you sure you want to delete the comment?");
+        if (confirm) {this.commentList = this.commentList.filter(comment => comment.id !== commentId);}
 
-
+  }
 
 }

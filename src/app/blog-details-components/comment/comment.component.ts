@@ -1,8 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Comment} from "../../interfaces/comment-interface";
 import {AccountService} from "../../services/account.service";
 import {PostService} from "../../services/post.service";
+import {CommentService} from "../../services/comment.service";
+import {error} from "protractor";
 
 
 @Component({
@@ -18,7 +20,7 @@ import {PostService} from "../../services/post.service";
       </div>
       <p class="comment-comment">{{ comment.comment }}</p>
       <div class="buttons" *ngIf="isLoggedIn" >
-        <button type="button" class="delete-button" *ngIf="canIEditAndDelete()"> Delete </button>
+        <button type="button" class="delete-button" *ngIf="canIEditAndDelete()" (click)="handleDelete()"> Delete </button>
       </div>
     </div>
     </div>
@@ -28,16 +30,16 @@ import {PostService} from "../../services/post.service";
 })
 export class CommentComponent{
  @Input() comment!: Comment;
+ @Output() deletedComment = new EventEmitter<number>();
 
  isLoggedIn = this.accountService.isLoggedIn();
 
  constructor(
      private postService: PostService,
      private accountService: AccountService,
+     private commentService: CommentService,
  ) {
  }
-
-
 
   canIEditAndDelete(): boolean {
    const account = this.accountService.getLoginAccount();
@@ -45,6 +47,19 @@ export class CommentComponent{
      return true;
    }
    else {return false}}
+
+
+    handleDelete() {
+        this.commentService.deleteByID(this.comment.id).subscribe({next: () =>{
+                    this.deletedComment.emit(this.comment.id);
+                    console.log('should be deleted now')
+            }, error:(error) =>{
+            console.log(error);}
+        }
+        )
+    }
+
+
 
 
 }
