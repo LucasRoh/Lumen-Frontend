@@ -55,7 +55,7 @@ export class PostComponent implements OnInit {
 
     showCommentForm: boolean = false;
 
-    timestamp:string | undefined = this.post?.timestamp.replace(/^(\d{4})-(\d{2})-(\d{2})T.*$/, '$3-$2-$1')
+    timestamp:string | undefined;
 
     constructor(
         private postService: PostService,
@@ -74,6 +74,7 @@ export class PostComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadCommentsByPostId()
+        this.timestamp =  this.post?.timestamp.replace(/^(\d{4})-(\d{2})-(\d{2})T.*$/, '$3-$2-$1')
     }
 
     async reloadLikes() {
