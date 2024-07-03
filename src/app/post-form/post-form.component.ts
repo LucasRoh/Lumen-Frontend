@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Blog} from "../interfaces/blog-interface";
 import {BlogService} from "../services/blog.service";
+import {async} from "rxjs";
 import {TagService} from "../services/tag.service";
-import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -20,11 +20,8 @@ import {MatSelectModule} from '@angular/material/select';
 
         <textarea class="textArea" id="text" placeholder="Text" name="text" [(ngModel)]="blog.question"></textarea>
 
-        
-        <mat-select [(ngModel)]="value" placeholder="Select a blog">
-           <mat-option *ngFor="let blog of blogs" [(ngModel)]="blog.id">{{blog.title}}</mat-option>
-        </mat-select>
-    
+
+        <input class="tags" type="number" id="tag" placeholder="Tags" name="tags" [(ngModel)]="value">
         
         <img class="submit" [src]=submitURL alt="Submit" (click)="handleSubmit()">
  
@@ -68,14 +65,15 @@ export class PostFormComponent implements OnInit{
 
   handleSubmit() {
     console.log(this.blog);
-    console.log(this.value);
     this.blogService.createBlog(this.blog, this.value).then(() => {
-      alert("Skibidi Alpha leader Tribe leader sigma")
-    });
-  }
+      console.log(this.value);
+      this.blogService.createBlog(this.blog, this.value).then(() => {
+        alert("Skibidi Alpha leader Tribe leader sigma")
+      })})}
+
   defineID(id : number){
     this.value = id;
-    console.log(id)
+    console.log(this.value)
   }
 
   async loadBlogs() {
