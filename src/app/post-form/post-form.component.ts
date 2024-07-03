@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Blog} from "../interfaces/blog-interface";
 import {BlogService} from "../services/blog.service";
-import {async} from "rxjs";
 import {TagService} from "../services/tag.service";
+
 
 
 
@@ -20,9 +20,12 @@ import {TagService} from "../services/tag.service";
 
         <textarea class="textArea" id="text" placeholder="Text" name="text" [(ngModel)]="blog.question"></textarea>
 
-        <div class="tags">
-          <span *ngFor="let blog of blogs" (click)="defineID(blog.id)">{{blog.title}}</span>
-        </div>
+        
+        <mat-select [(ngModel)]="value" placeholder="Select a blog">
+           <mat-option *ngFor="let blog of blogs" [(ngModel)]="blog.id">{{blog.title}}</mat-option>
+        </mat-select>
+    
+        
         <img class="submit" [src]=submitURL alt="Submit" (click)="handleSubmit()">
  
         
