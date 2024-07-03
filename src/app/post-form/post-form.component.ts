@@ -21,7 +21,7 @@ import {TagService} from "../services/tag.service";
         <textarea class="textArea" id="text" placeholder="Text" name="text" [(ngModel)]="blog.question"></textarea>
 
 
-        <input class="tags" type="number" id="tag" placeholder="Tags" name="tags" [(ngModel)]="value">
+        <input class="tags" type="text" id="tag" placeholder="Tags" name="tags" [(ngModel)]="value">
         
         <img class="submit" [src]=submitURL alt="Submit" (click)="handleSubmit()">
  
@@ -34,7 +34,7 @@ import {TagService} from "../services/tag.service";
 })
 export class PostFormComponent implements OnInit{
 
-  value: number = 0;
+  value: string = "";
   blogs: Blog[] = [];
 
 
@@ -67,14 +67,8 @@ export class PostFormComponent implements OnInit{
     console.log(this.blog);
     this.blogService.createBlog(this.blog, this.value).then(() => {
       console.log(this.value);
-      this.blogService.createBlog(this.blog, this.value).then(() => {
-        alert("Skibidi Alpha leader Tribe leader sigma")
-      })})}
+      })}
 
-  defineID(id : number){
-    this.value = id;
-    console.log(this.value)
-  }
 
   async loadBlogs() {
     this.blogs = await this.tagService.getAllBlogs();
